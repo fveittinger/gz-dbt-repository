@@ -33,3 +33,8 @@ sources:
             tests:
               - unique
               - not_null
+
+      - name: o_margin
+        identifier: int_orders_margin
+
+
