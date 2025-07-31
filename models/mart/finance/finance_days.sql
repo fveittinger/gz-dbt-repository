@@ -1,15 +1,6 @@
-/*
-The finance team has communicated that they want the following data at a daily granularity:
-Date
-Total number of transactions
-Total revenue
-Average Basket
-Operational Margin
-Total purchase cost
-Total shipping fees
-Total log costs
-Total quantity of products sold.
-*/
+-- creating a new model for the finance team
+
+-- {{ config(materialized='table') }}
 
 
 select
