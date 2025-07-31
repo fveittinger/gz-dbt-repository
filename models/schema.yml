@@ -1,0 +1,40 @@
+# schema (dataset) for my first dbt project
+
+version: 2
+
+sources:
+  - name: raw
+    schema: gz_raw_data
+    tables:
+      - name: sales
+        identifier: raw_gz_sales
+        description: Sales at Greenweez. Primary key is orders_id + pdt_id
+        tests:
+          - unique:
+              column_name: "(orders_id || '-' || pdt_id)"
+        
+        #loaded_at_field: "CAST(date_date AS TIMESTAMP)"
+        #freshness: 
+        #  warn_after:{90 DAYS}
+
+      - name: product
+        identifier: raw_gz_product
+        description: Product (purchase price) information from Greenweez. Primary key is products_id.
+        columns:
+          - name: products_id
+            tests:
+              - unique
+              - not_null
+      - name: ship
+        identifier: raw_gz_ship
+        description: Shipping information including shipping fee and costs for all orders. orders_id is the primary key.  
+        columns:
+          - name: orders_id
+            tests:
+              - unique
+              - not_null
+
+      - name: o_margin
+        identifier: int_orders_margin
+
+
